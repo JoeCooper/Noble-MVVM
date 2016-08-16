@@ -11,15 +11,13 @@ namespace NobleMuffins.MVVM
 	{
 		private readonly IDictionary<AbstractViewModel, GameObject> extantViews;
         private AsyncOperation loadingOperation;
-        private ChangeMonitor changeMonitor;
+		private bool wasLoading;
 
         public GameObject loadingOverlay;
         		
 		public PresenterForUnity ()
 		{
 			extantViews = new Dictionary<AbstractViewModel, GameObject> ();
-            changeMonitor = new ChangeMonitor();
-            changeMonitor.Add(() => IsLoading);
         }
 
 		public void Show<TViewModel> () where TViewModel: AbstractViewModel, new() {
@@ -79,10 +77,11 @@ namespace NobleMuffins.MVVM
 
         void Update()
         {
-            if (changeMonitor.Evaluate())
+			if (wasLoading != IsLoading)
             {
                 loadingOverlay.SetActive(IsLoading);
             }
+			wasLoading = IsLoading;
         }
 	}
 }
