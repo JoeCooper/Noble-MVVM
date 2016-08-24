@@ -15,8 +15,10 @@ namespace NobleMuffins.MVVM
 
         public GameObject loadingOverlay;
         		
-		public PresenterForUnity ()
+		public PresenterForUnity (): base()
 		{
+			wasLoading = true;
+			
 			extantViews = new Dictionary<AbstractViewModel, GameObject> ();
         }
 
