@@ -32,8 +32,8 @@ namespace NobleMuffins.MVVM
 				UnityEngine.Object prefab = null;
                 var _controllerType = typeof(AbstractViewController<>);
                 var typeArgs = new [] { viewModel.GetType() };
-                var controllerType = _controllerType.MakeGenericType(typeArgs);
-				var assembly = Assembly.GetExecutingAssembly();
+				var controllerType = _controllerType.MakeGenericType(typeArgs);
+				var assembly = typeof(PresenterForUnity).Assembly;
 				var types = assembly.GetTypes();
 				foreach(var type in types) {
 					var isRelevant = controllerType.IsAssignableFrom(type);

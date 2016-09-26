@@ -36,7 +36,7 @@ namespace NobleMuffins.MVVM {
 			}
 
 			if(result == null) {
-				var assembly = Assembly.GetExecutingAssembly();
+				var assembly = typeof(Singleton).Assembly;
 				var types = assembly.GetTypes();
 				foreach(var type in types) {
 					var isRelevant = givenType.IsAssignableFrom(type);
